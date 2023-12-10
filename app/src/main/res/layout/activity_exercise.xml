@@ -76,6 +76,58 @@
         </LinearLayout>
     </FrameLayout>
 
+    <TextView
+        android:id = "@+id/tvExerciseLabel"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "@string/upcoming_exercise_is"
+        app:layout_constraintTop_toBottomOf="@+id/flCounter"
+        app:layout_constraintBottom_toTopOf = "@+id/tvUpcomingExerciseName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/light_green"
+        android:textSize = "22sp"
+        android:textStyle = "bold"
+        />
+
+    <TextView
+        android:id = "@+id/tvUpcomingExerciseName"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvExerciseLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/light_green"
+        android:textSize = "22sp"
+        android:textStyle = "bold"
+        />
+
+    <ImageView
+        android:layout_width = "match_parent"
+        android:layout_height = "0dp"
+        tools:src = "@drawable/ic_jumping_jacks"
+        android:scaleType="fitXY"
+        android:visibility = "gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarExercise"
+        android:id = "@+id/ivExerciseIcons"
+        app:layout_constraintBottom_toTopOf = "@+id/tvExerciseName"
+        android:contentDescription="exercise image type" />
+    <TextView
+        android:id = "@+id/tvExerciseName"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "test"
+        android:visibility = "gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toTopOf = "@+id/flExerciseView"
+        app:layout_constraintTop_toBottomOf="@+id/ivExerciseIcons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/light_green"
+        android:textSize = "22sp"
+        android:textStyle = "bold"
+        />
     <FrameLayout
         android:id = "@+id/flExerciseView"
         android:layout_height="100dp"
