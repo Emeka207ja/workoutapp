@@ -24,20 +24,21 @@ object Constants {
         false,
         false,
     )
-    private val squat :ExerciseModel = ExerciseModel(
-        4,
-        "squat",
-        R.drawable.ic_squat,
-        false,
-        false
-    )
     private val lunge :ExerciseModel = ExerciseModel(
-        5,
+        4,
         "lunge",
         R.drawable.ic_lunge,
         false,
         false
     )
+    private val squat :ExerciseModel = ExerciseModel(
+        5,
+        "squat",
+        R.drawable.ic_squat,
+        false,
+        false
+    )
+
     fun getExerciseList():ArrayList<ExerciseModel>{
         addExerciseToList(jumpingJack)
         addExerciseToList(plank)

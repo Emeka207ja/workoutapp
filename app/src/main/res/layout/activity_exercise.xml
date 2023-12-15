@@ -68,7 +68,7 @@
                 android:layout_height = "wrap_content"
                 android:layout_width = "wrap_content"
                 android:gravity = "center"
-                android:text = "10"
+                android:text = "@string/_10"
                 tools:text = "10"
                 android:textColor = "@color/white"
                 android:textSize = "22sp"
@@ -135,10 +135,10 @@
         android:layout_width="100dp"
         tools:visibility = "visible"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarExercise"
+        app:layout_constraintTop_toBottomOf="@+id/tvExerciseName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rvProgress"
         android:background = "@drawable/fl_circular_border"
         >
         <ProgressBar
@@ -175,4 +175,16 @@
                 />
         </LinearLayout>
     </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flExerciseView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,19 @@
 package com.example.workoutapp
 
+import android.content.Context
+import android.content.Intent
+import android.media.MediaPlayer
+import android.net.Uri
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
+import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workoutapp.databinding.ActivityExerciseBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -20,7 +26,8 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
     private var exerciseList :ArrayList<ExerciseModel>? = null
     private var binding : ActivityExerciseBinding? = null
     private var currentExercisePosition:Int = -1
-
+    private var media : MediaPlayer? = null
+    private var exerciseAdapter :ExerciseRecyclerviewAdapter? = null
 
     private var tts : TextToSpeech? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,15 +42,30 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
         binding?.toolbarExercise?.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+        binding?.tvTimer?.text = "hi"
         exerciseList = Constants.getExerciseList()
         setUpRestView()
-
-
+        setupExerciseRecyclerView()
     }
 
 
+    private fun setupExerciseRecyclerView(){
 
+        binding?.rvProgress?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+
+        exerciseAdapter = ExerciseRecyclerviewAdapter(exerciseList!!)
+        binding?.rvProgress?.adapter = exerciseAdapter
+
+    }
     private fun setUpRestView(){
+        try{
+            val soundUri = Uri.parse("android.resource://com.example.workoutapp/" + R.raw.app_src_main_res_raw_press_start)
+            media = MediaPlayer.create(applicationContext,soundUri)
+            media?.isLooping = false
+            media?.start()
+        }catch(e:Exception){
+            e.printStackTrace()
+        }
         binding?.flCounter?.visibility = View.VISIBLE
         binding?.tvStart?.visibility = View.VISIBLE
         binding?.tvStart?.visibility = View.VISIBLE
@@ -75,6 +97,8 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
 
                 override fun onFinish() {
                     currentExercisePosition++
+                    exerciseList!![currentExercisePosition].setIsSelected(true)
+                    exerciseAdapter!!.notifyDataSetChanged()
                     setupExerciseView()
                 }
 
@@ -91,10 +115,15 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
             }
 
             override fun onFinish() {
+                exerciseList!![currentExercisePosition].setIsSelected(false)
+                exerciseList!![currentExercisePosition].setIsCompleted(true)
+                exerciseAdapter!!.notifyDataSetChanged()
                if(currentExercisePosition<exerciseList!!.size-1){
                    setUpRestView()
                }else{
-                   Toast.makeText(this@ExerciseActivity,"finished",Toast.LENGTH_SHORT).show()
+                   val intent = Intent(this@ExerciseActivity,FinishActivity::class.java)
+                   startActivity(intent)
+                   finish()
                }
             }
         }.start()
@@ -132,7 +161,11 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
             tts!!.stop()
             tts!!.shutdown()
         }
+        if(media!= null){
+            media?.stop()
+        }
         binding = null
+        exerciseAdapter!!.clearList()
     }
 
     override fun onInit(status: Int) {
