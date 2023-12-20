@@ -1,22 +1,21 @@
 package com.example.workoutapp
 
+import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workoutapp.databinding.ActivityExerciseBinding
+import com.example.workoutapp.databinding.CustomDailogBinding
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
     private var restTimer : CountDownTimer? = null
@@ -40,7 +39,8 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         binding?.toolbarExercise?.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+//            onBackPressedDispatcher.onBackPressed()
+            showDialog(this@ExerciseActivity)
         }
         binding?.tvTimer?.text = "hi"
         exerciseList = Constants.getExerciseList()
@@ -179,6 +179,23 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
         }else{
             Log.d("tts error","error occurred")
         }
+    }
+
+    private fun showDialog(context:Context){
+        val  dialog = Dialog(context)
+        val dialogBinding = CustomDailogBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+        dialog.setCanceledOnTouchOutside(false)
+        dialogBinding.btnYes.setOnClickListener{
+            if (context is Activity) {
+                context.finish()
+                dialog.dismiss()
+            }
+        }
+        dialogBinding.btnNo.setOnClickListener{
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun speakOut(value:String){

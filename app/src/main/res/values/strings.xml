@@ -6,4 +6,9 @@
     <string name="get_started">Get ready for</string>
     <string name="upcoming_exercise_is">upcoming exercise is</string>
     <string name="_10">10</string>
+    <string name="are_you_sure_you_want_to_quit">are you sure you want to quit?</string>
+    <string name="this_will_stop_your_workout_you_have_come_this_far">this will stop your workout, you have come this far</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="are_you_sure">Are you sure?</string>
 </resources>
