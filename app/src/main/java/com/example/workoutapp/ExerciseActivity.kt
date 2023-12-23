@@ -42,7 +42,7 @@ class ExerciseActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
 //            onBackPressedDispatcher.onBackPressed()
             showDialog(this@ExerciseActivity)
         }
-        binding?.tvTimer?.text = "hi"
+        binding?.tvTimer?.text = "10"
         exerciseList = Constants.getExerciseList()
         setUpRestView()
         setupExerciseRecyclerView()

@@ -39,4 +39,69 @@
             android:layout_gravity = "center"
             />
     </FrameLayout>
+
+    <FrameLayout
+        android:layout_width = "80dp"
+        android:layout_height = "80dp"
+        android:id = "@+id/flBmi"
+        app:layout_constraintTop_toBottomOf = "@+id/fl_start_counter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/flHistory"
+        android:background = "@drawable/circular_background"
+        >
+        <TextView
+            android:id = "@+id/tvBMI"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:text = "@string/bmi"
+            android:layout_gravity = "center"
+            android:gravity = "center"
+            android:textColor = "@color/white"
+            android:textStyle = "bold"
+            />
+    </FrameLayout>
+    <TextView
+        android:id = "@+id/tvCalculate"
+        app:layout_constraintTop_toBottomOf = "@+id/flBmi"
+        app:layout_constraintStart_toStartOf="@+id/flBmi"
+        app:layout_constraintEnd_toEndOf = "@+id/flBmi"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop="10dp"
+        android:text = "Calculate"
+
+        />
+
+    <FrameLayout
+        android:layout_width = "80dp"
+        android:layout_height = "80dp"
+        android:id = "@+id/flHistory"
+        app:layout_constraintTop_toBottomOf = "@+id/fl_start_counter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/flBmi"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity = "center"
+        android:gravity = "center"
+        android:background = "@drawable/circular_background"
+        >
+        <ImageView
+            android:id = "@+id/ivHistory"
+            android:layout_width = "50dp"
+            android:layout_height = "50dp"
+            android:src = "@drawable/ic_calendar"
+            android:layout_gravity = "center"
+            android:gravity = "center"
+            />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/flHistory"
+        app:layout_constraintStart_toStartOf="@+id/flHistory"
+        app:layout_constraintTop_toBottomOf="@+id/flHistory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

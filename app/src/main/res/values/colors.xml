@@ -10,4 +10,5 @@
     <color name="dark_blue">#14213d</color>
     <color name="light_green">#2a850e</color>
     <color name="light_gray">#adb5bd</color>
+    <color name = "error">#FF6969</color>
 </resources>

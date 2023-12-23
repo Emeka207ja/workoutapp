@@ -11,4 +11,11 @@
     <string name="ok">ok</string>
     <string name="cancel">cancel</string>
     <string name="are_you_sure">Are you sure?</string>
+    <string name="bmi">BMI</string>
+    <string name="weight_in_kg">weight (in kg)</string>
+    <string name="height_in_cm">height (in cm)</string>
+    <string name="cal_bmi">Cal BMI</string>
+    <string name="your_bmi">Your BMI</string>
+    <string name="your_bmi_is">Your BMI is</string>
+    <string name="history">History</string>
 </resources>
